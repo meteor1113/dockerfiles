@@ -1,0 +1,17 @@
+services:
+  # docker exec -it ubuntu-desktop-xfce-1 passwd ubuntu
+  xfce:
+    image: meteor1113/ubuntu-desktop-xfce
+    restart: unless-stopped
+    ports:
+      - "2422:22"
+      - "3489:3389"
+    privileged: true
+    # volumes:
+    #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    #   - /run:/run:rw
+    #   - /tmp:/tmp
+    tmpfs:
+      - /run
+      - /run/lock
+      - /tmp
