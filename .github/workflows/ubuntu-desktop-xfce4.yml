@@ -32,5 +32,5 @@ jobs:
           context: "{{defaultContext}}:ubuntu-desktop-xfce4"
           push: true
           tags: |
-            - meteor1113/ubuntu-desktop-xfce4:24.04
-            - meteor1113/ubuntu-desktop-xfce4:latest
+            meteor1113/ubuntu-desktop-xfce4:24.04
+            meteor1113/ubuntu-desktop-xfce4:latest
