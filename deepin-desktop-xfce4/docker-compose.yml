@@ -1,0 +1,19 @@
+services:
+  # wechat installed by Dockerfile cannot use, maybe it needs bwrap/apparmor?
+  # docker exec -it deepin-desktop-xfce4-1 bash -c "apt update && apt install -y store.spark-app.wechat-linux-spark"
+  # docker exec -it deepin-desktop-xfce4-1 passwd deepin
+  xfce4:
+    image: meteor1113/deepin-desktop-xfce4
+    restart: unless-stopped
+    ports:
+      - "2522:22"
+      - "3589:3389"
+    privileged: true
+    # volumes:
+    #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    #   - /run:/run:rw
+    #   - /tmp:/tmp
+    tmpfs:
+      - /run
+      - /run/lock
+      - /tmp
