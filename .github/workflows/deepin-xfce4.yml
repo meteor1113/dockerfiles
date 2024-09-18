@@ -1,16 +1,16 @@
-name: deepin-desktop-xfce4
+name: deepin-xfce4
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - "deepin-desktop-xfce4/**"
-      - ".github/workflows/deepin-desktop-xfce4.yml"
+      - "deepin-xfce4/**"
+      - ".github/workflows/deepin-xfce4.yml"
   pull_request:
     branches: [ "main" ]
     paths:
-      - "deepin-desktop-xfce4/**"
-      - ".github/workflows/deepin-desktop-xfce4.yml"
+      - "deepin-xfce4/**"
+      - ".github/workflows/deepin-xfce4.yml"
 
 jobs:
   docker:
@@ -29,8 +29,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: "{{defaultContext}}:deepin-desktop-xfce4"
+          context: "{{defaultContext}}:deepin-xfce4"
           push: true
           tags: |
-            meteor1113/deepin-desktop-xfce4:23
-            meteor1113/deepin-desktop-xfce4:latest
+            meteor1113/deepin-xfce4:23
+            meteor1113/deepin-xfce4:latest
