@@ -1,16 +1,16 @@
-name: ubuntu-desktop-xfce4
+name: ubuntu-xfce4
 
 on:
   push:
     branches: [ "main" ]
     paths:
-      - "ubuntu-desktop-xfce4/**"
-      - ".github/workflows/ubuntu-desktop-xfce4.yml"
+      - "ubuntu-xfce4/**"
+      - ".github/workflows/ubuntu-xfce4.yml"
   pull_request:
     branches: [ "main" ]
     paths:
-      - "ubuntu-desktop-xfce4/**"
-      - ".github/workflows/ubuntu-desktop-xfce4.yml"
+      - "ubuntu-xfce4/**"
+      - ".github/workflows/ubuntu-xfce4.yml"
 
 jobs:
   docker:
@@ -29,8 +29,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: "{{defaultContext}}:ubuntu-desktop-xfce4"
+          context: "{{defaultContext}}:ubuntu-xfce4"
           push: true
           tags: |
-            meteor1113/ubuntu-desktop-xfce4:24.04
-            meteor1113/ubuntu-desktop-xfce4:latest
+            meteor1113/ubuntu-xfce4:24.04
+            meteor1113/ubuntu-xfce4:latest
