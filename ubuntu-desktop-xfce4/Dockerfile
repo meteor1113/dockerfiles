@@ -20,4 +20,4 @@ RUN adduser xrdp ssl-cert \
     # && echo password | passwd --stdin ubuntu
 EXPOSE 22 3389
 
-CMD ["usr/sbin/systemd"]
+CMD ["/usr/lib/systemd/systemd"]

@@ -1,7 +1,7 @@
 services:
-  # docker exec -it ubuntu-desktop-xfce-1 passwd ubuntu
+  # docker exec -it ubuntu-desktop-xfce4-1 passwd ubuntu
   xfce:
-    image: meteor1113/ubuntu-desktop-xfce
+    image: meteor1113/ubuntu-desktop-xfce4
     restart: unless-stopped
     ports:
       - "2422:22"

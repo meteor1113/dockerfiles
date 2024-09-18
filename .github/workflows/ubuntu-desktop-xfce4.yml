@@ -1,18 +1,21 @@
-name: Docker Image CI
+name: ubuntu-desktop-xfce4
 
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - "ubuntu-desktop-xfce4/**"
+      - ".github/workflows/ubuntu-desktop-xfce4.yml"
   pull_request:
     branches: [ "main" ]
+    paths:
+      - "ubuntu-desktop-xfce4/**"
+      - ".github/workflows/ubuntu-desktop-xfce4.yml"
 
 jobs:
   docker:
     runs-on: ubuntu-latest
     steps:
-      # -
-      #   name: Set up QEMU
-      #   uses: docker/setup-qemu-action@v3
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -26,6 +29,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: "{{defaultContext}}:ubuntu-desktop-xfce"
+          context: "{{defaultContext}}:ubuntu-desktop-xfce4"
           push: true
-          tags: meteor1113/ubuntu-desktop-xfce:latest
+          tags: |
+            - meteor1113/ubuntu-desktop-xfce4:24.04
+            - meteor1113/ubuntu-desktop-xfce4:latest
