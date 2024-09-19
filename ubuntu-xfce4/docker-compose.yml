@@ -1,5 +1,5 @@
 services:
-  # docker exec -it ubuntu-xfce4-1 passwd ubuntu
+  # docker exec -it ubuntu-desktop-xfce4-1 passwd ubuntu
   xfce:
     image: meteor1113/ubuntu-xfce4
     restart: unless-stopped
@@ -11,7 +11,7 @@ services:
     #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
     #   - /run:/run:rw
     #   - /tmp:/tmp
-    tmpfs:
-      - /run
-      - /run/lock
-      - /tmp
+    # tmpfs:
+    #   - /run
+    #   - /run/lock
+    #   - /tmp
