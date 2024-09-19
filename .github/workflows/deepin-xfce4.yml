@@ -13,35 +13,17 @@ on:
       - ".github/workflows/deepin-xfce4.yml"
 
 jobs:
-  collect:
-    runs-on: ubuntu-latest
-    outputs:
-      tags: ${{ steps.meta.outputs.tags }}
-      labels: ${{ steps.meta.outputs.labels }}
-    steps:
-      -
-        name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v5
-        with:
-          images: "meteor1113/deepin-xfce4"
-          tags: |
-            type=raw,value=latest
-            type=raw,value=23
-            type=sha
-
   deploy:
     needs: collect
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     with:
       context: "{{defaultContext}}:deepin-xfce4"
       # platforms: "linux/amd64"
-      # tags: "meteor1113/deepin-xfce4"
-      tags: ${{ needs.collect.outputs.tags }}
-      labels: ${{ needs.collect.outputs.labels }}
-        # type=raw,value=23
-        # type=raw,value=latest
-        # type=sha
+      images: "meteor1113/deepin-xfce4"
+      tags: |
+        type=raw,value=latest
+        type=raw,value=23
+        type=sha
     secrets:
       username: "${{ secrets.DOCKERHUB_USERNAME }}"
       token: "${{ secrets.DOCKERHUB_TOKEN }}"
