@@ -7,12 +7,18 @@ on:
       - "deepin-xfce4/**"
       - ".github/workflows/deepin-xfce4.yml"
       - ".github/workflows/deploy_docker_hub.yml"
+    paths-ignore:
+      - "deepin-xfce4/.dockerignore"
+      - "deepin-xfce4/docker-compose.yml"
   pull_request:
     branches: [ "main" ]
     paths:
       - "deepin-xfce4/**"
       - ".github/workflows/deepin-xfce4.yml"
       - ".github/workflows/deploy_docker_hub.yml"
+    paths-ignore:
+      - "deepin-xfce4/.dockerignore"
+      - "deepin-xfce4/docker-compose.yml"
 
 jobs:
   deploy:
