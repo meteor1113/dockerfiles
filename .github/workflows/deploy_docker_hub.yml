@@ -49,18 +49,18 @@ jobs:
         with:
           username: ${{ secrets.username }}
           password: ${{ secrets.token }}
-      # -
-      #   name: Build and push
-      #   uses: docker/build-push-action@v6
-      #   with:
-      #     context: ${{ inputs.context }}
-      #     push: true
-      #     platforms: ${{ inputs.platforms }}
-      #     tags: ${{ steps.meta.outputs.tags }}
-      #     labels: ${{ steps.meta.outputs.labels }}
-      #     # tags: |
-      #     #   meteor1113/deepin-xfce4:23
-      #     #   meteor1113/deepin-xfce4:latest
+      -
+        name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ inputs.context }}
+          push: true
+          platforms: ${{ inputs.platforms }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          # tags: |
+          #   meteor1113/ubuntu-xfce4:24.04
+          #   meteor1113/ubuntu-xfce4:latest
       # -
       #   name: Build and push image
       #   uses: docker/build-push-action@v6
@@ -74,10 +74,3 @@ jobs:
       #     push: true
       #     tags: ${{ steps.meta.outputs.tags }}
       #     sbom: true
-      # -
-      #   name: Update Docker Hub description
-      #   uses: peter-evans/dockerhub-description@v4
-      #   with:
-      #     username: ${{ secrets.USERNAME }}
-      #     password: ${{ secrets.TOKEN }}
-      #     short-description: ${{ github.event.repository.description }}
