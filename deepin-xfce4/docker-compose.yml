@@ -4,6 +4,9 @@ services:
   # docker exec -it deepin-desktop-xfce4-1 passwd deepin
   xfce4:
     image: meteor1113/deepin-xfce4
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "2522:22"

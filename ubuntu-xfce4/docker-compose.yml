@@ -2,6 +2,9 @@ services:
   # docker exec -it ubuntu-desktop-xfce4-1 passwd ubuntu
   xfce4:
     image: meteor1113/ubuntu-xfce4
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     restart: unless-stopped
     ports:
       - "2422:22"
