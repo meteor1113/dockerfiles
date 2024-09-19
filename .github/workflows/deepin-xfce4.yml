@@ -6,11 +6,13 @@ on:
     paths:
       - "deepin-xfce4/**"
       - ".github/workflows/deepin-xfce4.yml"
+      - ".github/workflows/deploy_docker_hub.yml"
   pull_request:
     branches: [ "main" ]
     paths:
       - "deepin-xfce4/**"
       - ".github/workflows/deepin-xfce4.yml"
+      - ".github/workflows/deploy_docker_hub.yml"
 
 jobs:
   deploy:
