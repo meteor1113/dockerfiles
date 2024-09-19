@@ -9,6 +9,7 @@ RUN echo "deb https://com-store-packages.uniontech.com/appstorev23 beige appstor
     && apt update -y \
     && apt install -y \
         sudo \
+        htop \
         systemd \
         openssh-server \
         xfce4 \
