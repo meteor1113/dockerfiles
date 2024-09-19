@@ -9,10 +9,13 @@ on:
         required: false
         type: string
         default: "linux/amd64"
-      images: # ex: "name/app"
+      # images: # ex: "name/app"
+      #   required: true
+      #   type: string
+      tags: # ex: "name/app:latest,name/app:1.0.0"
         required: true
         type: string
-      tags: # ex: "name/app:latest,name/app:1.0.0"
+      labels:
         required: true
         type: string
     secrets:
