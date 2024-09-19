@@ -14,7 +14,6 @@ on:
 
 jobs:
   deploy:
-    needs: collect
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     with:
       context: "{{defaultContext}}:deepin-xfce4"
