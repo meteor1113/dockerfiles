@@ -13,13 +13,16 @@ on:
       - ".github/workflows/deepin-xfce4.yml"
 
 jobs:
-  docker:
+  deploy:
     uses: meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     with:
       context: "{{defaultContext}}:deepin-xfce4"
       # platforms: "linux/amd64"
       images: "meteor1113/deepin-xfce4"
-      tags: "23,latest"
+      tags: |
+        type=raw,value=23
+        type=raw,value=latest
+        type=sha
     secrets:
       username: ${{ secrets.DOCKERHUB_USERNAME }}
       token: ${{ secrets.DOCKERHUB_TOKEN }}
