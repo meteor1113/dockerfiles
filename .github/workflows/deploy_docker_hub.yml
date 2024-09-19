@@ -59,8 +59,8 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           # tags: |
-          #   meteor1113/ubuntu-xfce4:24.04
           #   meteor1113/ubuntu-xfce4:latest
+          #   meteor1113/ubuntu-xfce4:24.04
       # -
       #   name: Build and push image
       #   uses: docker/build-push-action@v6
