@@ -19,7 +19,7 @@ on:
       - ".github/workflows/deploy_docker_hub.yml"
 
 env:
-  BASE_TAG: 23
+  BASE_TAG: "23"
 
 jobs:
   deploy:
@@ -28,11 +28,11 @@ jobs:
       context: "{{defaultContext}}:deepin-xfce4"
       # platforms: "linux/amd64"
       build-args: |
-        BASE_TAG=${{ env.BASE_TAG }}
+        BASE_TAG="${{ env.BASE_TAG }}"
       images: "meteor1113/deepin-xfce4"
       tags: |
         type=raw,value=latest
-        type=raw,value=${{ env.BASE_TAG }}
+        type=raw,value="${{ env.BASE_TAG }}"
     secrets:
       username: "${{ secrets.DOCKERHUB_USERNAME }}"
       token: "${{ secrets.DOCKERHUB_TOKEN }}"
