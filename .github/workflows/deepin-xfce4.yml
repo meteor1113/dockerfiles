@@ -18,16 +18,21 @@ on:
       - ".github/workflows/deepin-xfce4.yml"
       - ".github/workflows/deploy_docker_hub.yml"
 
+env:
+  BASE_TAG: 23
+
 jobs:
   deploy:
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     with:
       context: "{{defaultContext}}:deepin-xfce4"
       # platforms: "linux/amd64"
+      build-args: |
+        BASE_TAG=${{ env.BASE_TAG }}
       images: "meteor1113/deepin-xfce4"
       tags: |
         type=raw,value=latest
-        type=raw,value=23
+        type=raw,value=${{ env.BASE_TAG }}
     secrets:
       username: "${{ secrets.DOCKERHUB_USERNAME }}"
       token: "${{ secrets.DOCKERHUB_TOKEN }}"

@@ -9,6 +9,9 @@ on:
         required: false
         type: string
         default: "linux/amd64"
+      build-args: # BASE_TAG=24.04
+        required: false
+        type: string
       images: # ex: "name/app"
         required: true
         type: string
@@ -56,6 +59,7 @@ jobs:
           context: ${{ inputs.context }}
           push: true
           platforms: ${{ inputs.platforms }}
+          build-args: ${{ inputs.build-args }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           # tags: |

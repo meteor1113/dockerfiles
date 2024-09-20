@@ -1,4 +1,5 @@
-FROM linuxdeepin/deepin:23
+ARG BASE_TAG=23
+FROM linuxdeepin/deepin:${BASE_TAG}
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV container=docker
