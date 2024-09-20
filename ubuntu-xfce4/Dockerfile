@@ -1,6 +1,7 @@
 # https://github.com/trfore/docker-ubuntu2404-systemd/blob/main/Dockerfile
 
-FROM ubuntu:24.04
+ARG BASE_TAG=24.04
+FROM ubuntu:${BASE_TAG}
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV container=docker

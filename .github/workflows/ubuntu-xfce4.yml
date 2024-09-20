@@ -18,16 +18,32 @@ on:
       - ".github/workflows/ubuntu-xfce4.yml"
       - ".github/workflows/deploy_docker_hub.yml"
 
+env:
+  BASE_TAG: 24.04
+
 jobs:
+  definition:
+    runs-on: ubuntu-latest
+    outputs:
+      base_tag: ${{ env.BASE_TAG }}
+    steps:
+      -
+        name: Debug
+        run: |
+          echo "BASE_TAG=${{ env.BASE_TAG }}"
+
   deploy:
+    needs: definition
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     with:
       context: "{{defaultContext}}:ubuntu-xfce4"
       # platforms: "linux/amd64"
+      build-args: |
+        BASE_TAG=${{ needs.definition.outputs.base_tag }}
       images: "meteor1113/ubuntu-xfce4"
       tags: |
         type=raw,value=latest
-        type=raw,value=24.04
+        type=raw,value=${{ needs.definition.outputs.base_tag }}
     secrets:
       username: "${{ secrets.DOCKERHUB_USERNAME }}"
       token: "${{ secrets.DOCKERHUB_TOKEN }}"
