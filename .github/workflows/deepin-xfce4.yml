@@ -26,6 +26,11 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       base_tag: ${{ env.BASE_TAG }}
+    steps:
+      -
+        name: Debug
+        run: |
+          echo "BASE_TAG=${{ env.BASE_TAG }}"
 
   deploy:
     needs: definition
