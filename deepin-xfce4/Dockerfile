@@ -7,7 +7,7 @@ ENV container=docker
 # store.spark-app.wechat-linux-spark \
 RUN echo "deb https://com-store-packages.uniontech.com/appstorev23 beige appstore" > /etc/apt/sources.list.d/appstore.list \
     && apt update -y \
-    && apt install -y \
+    && apt install -y --no-install-recommends \
         sudo \
         htop \
         systemd \
