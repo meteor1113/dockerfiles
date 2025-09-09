@@ -19,7 +19,7 @@ on:
       - ".github/workflows/deploy_docker_hub.yml"
 
 env:
-  BASE_TAG: 24.04
+  BASE_TAG: 25.04
 
 jobs:
   definition:
