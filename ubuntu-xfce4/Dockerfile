@@ -15,6 +15,10 @@ RUN apt update -y \
         xfce4 \
         xfce4-goodies \
         xrdp \
+        fonts-noto \
+        fonts-noto-cjk \
+        fonts-noto-cjk-extra \
+        ibus \
     && apt-get clean \
     && rm -rf /var/cache/apt/archives/* \
     && rm -rf /var/lib/apt/lists/*
