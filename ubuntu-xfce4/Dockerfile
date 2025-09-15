@@ -10,6 +10,8 @@ RUN apt update -y \
     && apt install -y \
         systemd \
         openssh-server \
+        sudo \
+        htop \
         xfce4 \
         xfce4-goodies \
         fonts-noto \
