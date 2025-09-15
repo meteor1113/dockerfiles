@@ -8,17 +8,12 @@ ENV container=docker
 
 RUN apt update -y \
     && apt install -y \
-        sudo \
-        htop \
         systemd \
         openssh-server \
         xfce4 \
         xfce4-goodies \
-        xrdp \
         fonts-noto \
-        fonts-noto-cjk \
-        fonts-noto-cjk-extra \
-        ibus \
+        xrdp \
     && apt-get clean \
     && rm -rf /var/cache/apt/archives/* \
     && rm -rf /var/lib/apt/lists/*
