@@ -1,0 +1,49 @@
+name: debian-xfce4
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "debian-xfce4/**"
+      - "!debian-xfce4/.dockerignore"
+      - "!debian-xfce4/docker-compose.yml"
+      - ".github/workflows/debian-xfce4.yml"
+      - ".github/workflows/deploy_docker_hub.yml"
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - "debian-xfce4/**"
+      - "!debian-xfce4/.dockerignore"
+      - "!debian-xfce4/docker-compose.yml"
+      - ".github/workflows/debian-xfce4.yml"
+      - ".github/workflows/deploy_docker_hub.yml"
+
+env:
+  BASE_TAG: latest
+
+jobs:
+  definition:
+    runs-on: ubuntu-latest
+    outputs:
+      base_tag: ${{ env.BASE_TAG }}
+    steps:
+      -
+        name: Debug
+        run: |
+          echo "BASE_TAG=${{ env.BASE_TAG }}"
+
+  deploy:
+    needs: definition
+    uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
+    with:
+      context: "{{defaultContext}}:debian-xfce4"
+      # platforms: "linux/amd64"
+      build-args: |
+        BASE_TAG=${{ needs.definition.outputs.base_tag }}
+      images: "meteor1113/debian-xfce4"
+      tags: |
+        type=raw,value=latest
+        type=raw,value=${{ needs.definition.outputs.base_tag }}
+    secrets:
+      username: "${{ secrets.DOCKERHUB_USERNAME }}"
+      token: "${{ secrets.DOCKERHUB_TOKEN }}"

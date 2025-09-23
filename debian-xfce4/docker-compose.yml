@@ -1,8 +1,8 @@
 services:
-  # docker exec -it ubuntu-desktop-xfce4-1 passwd ubuntu
-  # podman exec -it ubuntu-desktop_xfce4_1 passwd ubuntu
+  # docker exec -it debian-desktop-xfce4-1 passwd debian
+  # podman exec -it debian-desktop_xfce4_1 passwd debian
   xfce4:
-    image: docker.io/meteor1113/ubuntu-xfce4
+    image: docker.io/meteor1113/debian-xfce4
     # build:
     #   context: .
     #   dockerfile: Dockerfile
