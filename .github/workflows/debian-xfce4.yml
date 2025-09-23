@@ -18,20 +18,7 @@ on:
       - ".github/workflows/debian-xfce4.yml"
       - ".github/workflows/deploy_docker_hub.yml"
 
-env:
-  BASE_TAG: latest
-
 jobs:
-  definition:
-    runs-on: ubuntu-latest
-    outputs:
-      base_tag: ${{ env.BASE_TAG }}
-    steps:
-      -
-        name: Debug
-        run: |
-          echo "BASE_TAG=${{ env.BASE_TAG }}"
-
   deploy:
     needs: definition
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
@@ -45,7 +32,6 @@ jobs:
         BASE_TAG=${{ matrix.base_tag }}
       images: "meteor1113/debian-xfce4"
       tags: |
-        type=raw,value=latest
         type=raw,value=${{ matrix.base_tag }}
     secrets:
       username: "${{ secrets.DOCKERHUB_USERNAME }}"
