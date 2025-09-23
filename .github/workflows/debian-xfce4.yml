@@ -35,15 +35,18 @@ jobs:
   deploy:
     needs: definition
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
+    strategy:
+      matrix:
+        base_tag: [13, latest]
     with:
       context: "{{defaultContext}}:debian-xfce4"
       # platforms: "linux/amd64"
       build-args: |
-        BASE_TAG=${{ needs.definition.outputs.base_tag }}
+        BASE_TAG=${{ matrix.base_tag }}
       images: "meteor1113/debian-xfce4"
       tags: |
         type=raw,value=latest
-        type=raw,value=${{ needs.definition.outputs.base_tag }}
+        type=raw,value=${{ matrix.base_tag }}
     secrets:
       username: "${{ secrets.DOCKERHUB_USERNAME }}"
       token: "${{ secrets.DOCKERHUB_TOKEN }}"
