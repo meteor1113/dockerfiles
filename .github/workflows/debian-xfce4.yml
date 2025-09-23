@@ -20,7 +20,6 @@ on:
 
 jobs:
   deploy:
-    needs: definition
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     strategy:
       matrix:
