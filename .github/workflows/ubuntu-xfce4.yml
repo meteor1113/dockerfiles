@@ -23,7 +23,10 @@ jobs:
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     strategy:
       matrix:
-        base_tag: ["24.04", "25.04", "25.10", "latest"]
+        base_tag: ["24.04", "25.04", "25.10"]
+        include:
+          - base_tag: "24.04"
+            additional_tag: "latest"
     with:
       context: "{{defaultContext}}:ubuntu-xfce4"
       # platforms: "linux/amd64"
@@ -32,6 +35,7 @@ jobs:
       images: "meteor1113/ubuntu-xfce4"
       tags: |
         type=raw,value=${{ matrix.base_tag }}
+        ${{ matrix.additional_tag && format('type=raw,value={0}', matrix.additional_tag) || '' }}
     secrets:
       username: "${{ secrets.DOCKERHUB_USERNAME }}"
       token: "${{ secrets.DOCKERHUB_TOKEN }}"
