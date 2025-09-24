@@ -27,6 +27,10 @@ jobs:
         include:
           - base_tag: "24.04"
             additional_tag: "latest"
+          - base_tag: "25.04"
+            additional_tag: "rolling"
+          - base_tag: "25.10"
+            additional_tag: "devel"
     with:
       context: "{{defaultContext}}:ubuntu-xfce4"
       # platforms: "linux/amd64"
