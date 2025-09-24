@@ -1,6 +1,6 @@
 # https://github.com/trfore/docker-ubuntu2404-systemd/blob/main/Dockerfile
 
-ARG BASE_TAG=13
+ARG BASE_TAG=latest
 FROM debian:${BASE_TAG}
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -21,7 +21,9 @@ RUN apt update -y \
     && rm -rf /var/lib/apt/lists/*
 
 # https://forum.xfce.org/viewtopic.php?id=14108
-RUN adduser xrdp ssl-cert \
+RUN groupadd debian \
+    && useradd -m -s /bin/bash -g debian debian \
+    && adduser xrdp ssl-cert \
     && update-alternatives --set x-session-manager /usr/bin/startxfce4
     # && echo "startxfce4" > /home/ubuntu/.xsession
     # && chmod +x /home/ubuntu/.xsession

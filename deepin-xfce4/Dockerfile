@@ -1,4 +1,4 @@
-ARG BASE_TAG=23
+ARG BASE_TAG=latest
 FROM linuxdeepin/deepin:${BASE_TAG}
 
 ENV DEBIAN_FRONTEND=noninteractive

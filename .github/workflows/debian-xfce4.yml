@@ -23,7 +23,7 @@ jobs:
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     strategy:
       matrix:
-        base_tag: [13, latest]
+        base_tag: [13, latest, testing, unstable]
     with:
       context: "{{defaultContext}}:debian-xfce4"
       # platforms: "linux/amd64"

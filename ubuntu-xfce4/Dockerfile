@@ -1,6 +1,6 @@
 # https://github.com/trfore/docker-ubuntu2404-systemd/blob/main/Dockerfile
 
-ARG BASE_TAG=24.04
+ARG BASE_TAG=latest
 FROM ubuntu:${BASE_TAG}
 
 ENV DEBIAN_FRONTEND=noninteractive

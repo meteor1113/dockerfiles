@@ -6,12 +6,15 @@ services:
     # build:
     #   context: .
     #   dockerfile: Dockerfile
-    restart: unless-stopped
+    restart: always
     ports:
-      - "2422:22"
-      - "3489:3389"
+      - "5022:22"
+      - "5389:3389"
     privileged: true
-    # volumes:
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - /:/mnt/host
     #   - /sys/fs/cgroup:/sys/fs/cgroup:ro
     #   - /run:/run:rw
     #   - /tmp:/tmp
