@@ -16,6 +16,8 @@ RUN apt update -y \
         xfce4-goodies \
         fonts-noto \
         xrdp \
+        xorg \
+        xorgxrdp \
     && apt-get clean \
     && rm -rf /var/cache/apt/archives/* \
     && rm -rf /var/lib/apt/lists/*
