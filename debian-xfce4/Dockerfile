@@ -23,6 +23,7 @@ RUN apt update -y \
 # https://forum.xfce.org/viewtopic.php?id=14108
 RUN groupadd debian \
     && useradd -m -s /bin/bash -g debian debian \
+    && usermod -aG sudo debian \
     && adduser xrdp ssl-cert \
     && update-alternatives --set x-session-manager /usr/bin/startxfce4
     # && echo "startxfce4" > /home/ubuntu/.xsession
