@@ -44,6 +44,7 @@ jobs:
         type=raw,value=${{ matrix.base_tag }}
         ${{ matrix.add_tag1 && format('type=raw,value={0}', matrix.add_tag1) || '' }}
         ${{ matrix.add_tag2 && format('type=raw,value={0}', matrix.add_tag2) || '' }}
+        ${{ matrix.add_tag3 && format('type=raw,value={0}', matrix.add_tag3) || '' }}
     secrets:
       username: "${{ secrets.DOCKERHUB_USERNAME }}"
       token: "${{ secrets.DOCKERHUB_TOKEN }}"
