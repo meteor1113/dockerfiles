@@ -21,9 +21,12 @@ RUN apt update -y \
     && rm -rf /var/lib/apt/lists/*
 
 # https://forum.xfce.org/viewtopic.php?id=14108
-RUN groupadd debian \
-    && useradd -m -s /bin/bash -g debian debian \
-    && usermod -aG sudo debian \
+ARG USER=debian
+RUN groupadd ${USER} \
+    && useradd -m -s /bin/bash -g ${USER} ${USER} \
+    && usermod -aG sudo ${USER} \
+    && echo "${USER} ALL=(ALL) NOPASSWD: ALL" > "/etc/sudoers.d/${USER}" \
+    && chmod 440 "/etc/sudoers.d/${USER}" \
     && adduser xrdp ssl-cert \
     && update-alternatives --set x-session-manager /usr/bin/startxfce4
     # && echo "startxfce4" > /home/ubuntu/.xsession
