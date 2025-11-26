@@ -2,7 +2,7 @@ name: ubuntu-xfce4
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
       - "ubuntu-xfce4/**"
       - "!ubuntu-xfce4/.dockerignore"
@@ -10,7 +10,7 @@ on:
       - ".github/workflows/ubuntu-xfce4.yml"
       - ".github/workflows/deploy_docker_hub.yml"
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
       - "ubuntu-xfce4/**"
       - "!ubuntu-xfce4/.dockerignore"
@@ -23,17 +23,17 @@ jobs:
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     strategy:
       matrix:
-        base_tag: ["24.04", "25.10", "26.04"]
+        base_tag: ["latest", "rolling", "devel"] # https://hub.docker.com/_/ubuntu
         include:
-          - base_tag: "24.04"
+          - base_tag: "latest"
             add_tag1: "noble"
-            add_tag2: "latest"
-          - base_tag: "25.10"
+            add_tag2: "24.04"
+          - base_tag: "rolling"
             add_tag1: "questing"
-            add_tag2: "rolling"
-          - base_tag: "26.04"
+            add_tag2: "25.10"
+          - base_tag: "devel"
             add_tag1: "resolute"
-            add_tag2: "devel"
+            add_tag2: "26.04"
     with:
       context: "{{defaultContext}}:ubuntu-xfce4"
       # platforms: "linux/amd64"

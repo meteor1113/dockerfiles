@@ -2,7 +2,7 @@ name: debian-xfce4
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
       - "debian-xfce4/**"
       - "!debian-xfce4/.dockerignore"
@@ -10,7 +10,7 @@ on:
       - ".github/workflows/debian-xfce4.yml"
       - ".github/workflows/deploy_docker_hub.yml"
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
     paths:
       - "debian-xfce4/**"
       - "!debian-xfce4/.dockerignore"
@@ -23,10 +23,22 @@ jobs:
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     strategy:
       matrix:
-        base_tag: ["13", "testing", "unstable"]
+        base_tag: ["oldoldstable", "oldstable", "stable", "testing", "unstable"] # https://www.debian.org/releases/
         include:
-          - base_tag: "13"
-            additional_tag: "latest"
+          - base_tag: "oldoldstable"
+            add_tag1: "bullseye"
+            add_tag2: "11"
+          - base_tag: "oldstable"
+            add_tag1: "bookworm"
+            add_tag2: "12"
+          - base_tag: "stable"
+            add_tag1: "trixie"
+            add_tag2: "13"
+          - base_tag: "testing"
+            add_tag1: "forky"
+            add_tag2: "14"
+          - base_tag: "unstable"
+            add_tag2: "sid"
     with:
       context: "{{defaultContext}}:debian-xfce4"
       # platforms: "linux/amd64"
@@ -35,7 +47,8 @@ jobs:
       images: "meteor1113/debian-xfce4"
       tags: |
         type=raw,value=${{ matrix.base_tag }}
-        ${{ matrix.additional_tag && format('type=raw,value={0}', matrix.additional_tag) || '' }}
+        ${{ matrix.add_tag1 && format('type=raw,value={0}', matrix.add_tag1) || '' }}
+        ${{ matrix.add_tag2 && format('type=raw,value={0}', matrix.add_tag2) || '' }}
     secrets:
       username: "${{ secrets.DOCKERHUB_USERNAME }}"
       token: "${{ secrets.DOCKERHUB_TOKEN }}"
