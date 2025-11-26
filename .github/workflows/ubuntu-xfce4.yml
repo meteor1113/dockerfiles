@@ -23,14 +23,17 @@ jobs:
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     strategy:
       matrix:
-        base_tag: ["24.04", "25.04", "25.10"]
+        base_tag: ["24.04", "25.10", "26.04"]
         include:
           - base_tag: "24.04"
-            additional_tag: "latest"
-          - base_tag: "25.04"
-            additional_tag: "rolling"
+            add_tag1: "noble"
+            add_tag2: "latest"
           - base_tag: "25.10"
-            additional_tag: "devel"
+            add_tag1: "questing"
+            add_tag2: "rolling"
+          - base_tag: "26.04"
+            add_tag1: "resolute"
+            add_tag2: "devel"
     with:
       context: "{{defaultContext}}:ubuntu-xfce4"
       # platforms: "linux/amd64"
@@ -39,7 +42,8 @@ jobs:
       images: "meteor1113/ubuntu-xfce4"
       tags: |
         type=raw,value=${{ matrix.base_tag }}
-        ${{ matrix.additional_tag && format('type=raw,value={0}', matrix.additional_tag) || '' }}
+        ${{ matrix.add_tag1 && format('type=raw,value={0}', matrix.add_tag1) || '' }}
+        ${{ matrix.add_tag2 && format('type=raw,value={0}', matrix.add_tag2) || '' }}
     secrets:
       username: "${{ secrets.DOCKERHUB_USERNAME }}"
       token: "${{ secrets.DOCKERHUB_TOKEN }}"
