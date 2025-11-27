@@ -25,7 +25,7 @@ ARG USER=debian
 RUN groupadd ${USER} \
     && useradd -m -s /bin/bash -g ${USER} ${USER} \
     && usermod -aG sudo ${USER} \
-    && echo "${USER} ALL=(ALL) NOPASSWD: ALL" > "/etc/sudoers.d/${USER}" \
+    && echo "${USER} ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/${USER}" \
     && chmod 440 "/etc/sudoers.d/${USER}" \
     && adduser xrdp ssl-cert \
     && update-alternatives --set x-session-manager /usr/bin/startxfce4

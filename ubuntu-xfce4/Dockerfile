@@ -23,7 +23,10 @@ RUN apt update -y \
     && rm -rf /var/lib/apt/lists/*
 
 # https://forum.xfce.org/viewtopic.php?id=14108
-RUN adduser xrdp ssl-cert \
+ARG USER=ubuntu
+RUN echo "${USER} ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/${USER}" \
+    && chmod 440 "/etc/sudoers.d/${USER}" \
+    && adduser xrdp ssl-cert \
     && update-alternatives --set x-session-manager /usr/bin/startxfce4
     # && echo "startxfce4" > /home/ubuntu/.xsession
     # && chmod +x /home/ubuntu/.xsession
