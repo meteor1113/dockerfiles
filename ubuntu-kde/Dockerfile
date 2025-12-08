@@ -26,8 +26,8 @@ RUN DEBIAN_FRONTEND=noninteractive \
 ARG USER=ubuntu
 RUN echo "${USER} ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/${USER}" \
     && chmod 440 "/etc/sudoers.d/${USER}" \
-    && adduser xrdp ssl-cert \
-    && update-alternatives --set x-session-manager /usr/bin/startplasma-x11
+    && adduser xrdp ssl-cert
+    # && update-alternatives --set x-session-manager /usr/bin/startplasma-x11
     # && echo "startplasma-x11" > /home/ubuntu/.xsession
     # && chmod +x /home/ubuntu/.xsession
     # && echo password | passwd --stdin ubuntu
