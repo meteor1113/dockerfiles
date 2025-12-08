@@ -1,0 +1,49 @@
+name: ubuntu-lxqt
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "ubuntu-lxqt/**"
+      - "!ubuntu-lxqt/.dockerignore"
+      - "!ubuntu-lxqt/docker-compose.yml"
+      - ".github/workflows/ubuntu-lxqt.yml"
+      - ".github/workflows/deploy_docker_hub.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "ubuntu-lxqt/**"
+      - "!ubuntu-lxqt/.dockerignore"
+      - "!ubuntu-lxqt/docker-compose.yml"
+      - ".github/workflows/ubuntu-lxqt.yml"
+      - ".github/workflows/deploy_docker_hub.yml"
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
+    strategy:
+      matrix:
+        base_tag: ["latest", "rolling", "devel"] # https://hub.docker.com/_/ubuntu
+        include:
+          - base_tag: "latest"
+            add_tag1: "noble"
+            add_tag2: "24.04"
+          - base_tag: "rolling"
+            add_tag1: "questing"
+            add_tag2: "25.10"
+          - base_tag: "devel"
+            add_tag1: "resolute"
+            add_tag2: "26.04"
+    with:
+      context: "{{defaultContext}}:ubuntu-lxqt"
+      # platforms: "linux/amd64"
+      build-args: |
+        BASE_TAG=${{ matrix.base_tag }}
+      images: "meteor1113/ubuntu-lxqt"
+      tags: |
+        type=raw,value=${{ matrix.base_tag }}
+        ${{ matrix.add_tag1 && format('type=raw,value={0}', matrix.add_tag1) || '' }}
+        ${{ matrix.add_tag2 && format('type=raw,value={0}', matrix.add_tag2) || '' }}
+    secrets:
+      username: "${{ secrets.DOCKERHUB_USERNAME }}"
+      token: "${{ secrets.DOCKERHUB_TOKEN }}"
