@@ -8,7 +8,7 @@ FROM ubuntu:${BASE_TAG}
 
 RUN DEBIAN_FRONTEND=noninteractive \
     apt update -y \
-    && apt install -y \
+    && apt install -y -m \
         systemd \
         openssh-server \
         sudo \
