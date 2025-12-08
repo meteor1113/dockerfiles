@@ -23,11 +23,11 @@ jobs:
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     strategy:
       matrix:
-        base_tag: ["latest", "rolling", "devel"] # https://hub.docker.com/_/ubuntu
+        base_tag: ["rolling", "devel"] # https://hub.docker.com/_/ubuntu
         include:
-          - base_tag: "latest"
-            add_tag1: "noble"
-            add_tag2: "24.04"
+          # - base_tag: "latest"
+          #   add_tag1: "noble"
+          #   add_tag2: "24.04"
           - base_tag: "rolling"
             add_tag1: "questing"
             add_tag2: "25.10"
