@@ -23,7 +23,7 @@ jobs:
     uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
     strategy:
       matrix:
-        base_tag: ["stable", "testing", "unstable"] # https://www.debian.org/releases/
+        base_tag: ["stable", "testing"] # https://www.debian.org/releases/
         include:
           - base_tag: "stable"
             add_tag1: "trixie"
@@ -32,8 +32,8 @@ jobs:
           - base_tag: "testing"
             add_tag1: "forky"
             add_tag2: "14"
-          - base_tag: "unstable"
-            add_tag2: "sid"
+          # - base_tag: "unstable"
+          #   add_tag2: "sid"
     with:
       context: "{{defaultContext}}:debian-mate"
       # platforms: "linux/amd64"
