@@ -32,8 +32,8 @@ jobs:
           - base_tag: "testing"
             add_tag1: "forky"
             add_tag2: "14"
-          - base_tag: "unstable"
-            add_tag2: "sid"
+          # - base_tag: "unstable"
+          #   add_tag2: "sid"
     with:
       context: "{{defaultContext}}:debian-lxqt"
       # platforms: "linux/amd64"
