@@ -1,0 +1,50 @@
+name: debian-mate
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "debian-mate/**"
+      - "!debian-mate/.dockerignore"
+      - "!debian-mate/docker-compose.yml"
+      - ".github/workflows/debian-mate.yml"
+      - ".github/workflows/deploy_docker_hub.yml"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "debian-mate/**"
+      - "!debian-mate/.dockerignore"
+      - "!debian-mate/docker-compose.yml"
+      - ".github/workflows/debian-mate.yml"
+      - ".github/workflows/deploy_docker_hub.yml"
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/deploy_docker_hub.yml # meteor1113/dockerfiles/.github/workflows/deploy_docker_hub.yml@main
+    strategy:
+      matrix:
+        base_tag: ["stable", "testing", "unstable"] # https://www.debian.org/releases/
+        include:
+          - base_tag: "stable"
+            add_tag1: "trixie"
+            add_tag2: "13"
+            add_tag3: "latest"
+          - base_tag: "testing"
+            add_tag1: "forky"
+            add_tag2: "14"
+          - base_tag: "unstable"
+            add_tag2: "sid"
+    with:
+      context: "{{defaultContext}}:debian-mate"
+      # platforms: "linux/amd64"
+      build-args: |
+        BASE_TAG=${{ matrix.base_tag }}
+      images: "meteor1113/debian-mate"
+      tags: |
+        type=raw,value=${{ matrix.base_tag }}
+        ${{ matrix.add_tag1 && format('type=raw,value={0}', matrix.add_tag1) || '' }}
+        ${{ matrix.add_tag2 && format('type=raw,value={0}', matrix.add_tag2) || '' }}
+        ${{ matrix.add_tag3 && format('type=raw,value={0}', matrix.add_tag3) || '' }}
+    secrets:
+      username: "${{ secrets.DOCKERHUB_USERNAME }}"
+      token: "${{ secrets.DOCKERHUB_TOKEN }}"
