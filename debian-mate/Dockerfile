@@ -13,7 +13,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
         openssh-server \
         sudo \
         htop \
-        lxqt \
+        mate-desktop-environment \
         fonts-noto \
         xrdp \
         xorg \
@@ -30,8 +30,8 @@ RUN groupadd ${USER} \
     && echo "${USER} ALL=(ALL) NOPASSWD:ALL" > "/etc/sudoers.d/${USER}" \
     && chmod 440 "/etc/sudoers.d/${USER}" \
     && adduser xrdp ssl-cert \
-    && update-alternatives --set x-session-manager /usr/bin/startlxqt
-    # && echo "startlxqt" > /home/ubuntu/.xsession
+    && update-alternatives --set x-session-manager /usr/bin/mate-session
+    # && echo "mate-session" > /home/ubuntu/.xsession
     # && chmod +x /home/ubuntu/.xsession
     # && echo password | passwd --stdin ubuntu
 # # https://bugzilla.redhat.com/show_bug.cgi?id=1046469#c11
