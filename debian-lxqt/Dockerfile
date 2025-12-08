@@ -4,7 +4,7 @@ ARG BASE_TAG=latest
 FROM debian:${BASE_TAG}
 
 # ENV DEBIAN_FRONTEND=noninteractive
-# ENV container=docker
+ENV container=docker
 
 RUN DEBIAN_FRONTEND=noninteractive \
     apt update -y \
