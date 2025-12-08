@@ -16,6 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
         kde-plasma-desktop \
         plasma-session-x11 \
         fonts-noto \
+        ibus \
         xrdp \
         xorg \
         xorgxrdp \

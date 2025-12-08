@@ -3,10 +3,11 @@
 ARG BASE_TAG=latest
 FROM ubuntu:${BASE_TAG}
 
-ENV DEBIAN_FRONTEND=noninteractive
-ENV container=docker
+# ENV DEBIAN_FRONTEND=noninteractive
+# ENV container=docker
 
-RUN apt update -y \
+RUN DEBIAN_FRONTEND=noninteractive \
+    apt update -y \
     && apt install -y \
         systemd \
         openssh-server \
@@ -15,6 +16,7 @@ RUN apt update -y \
         xfce4 \
         xfce4-goodies \
         fonts-noto \
+        ibus \
         xrdp \
         xorg \
         xorgxrdp \

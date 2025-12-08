@@ -16,6 +16,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
         xfce4 \
         xfce4-goodies \
         fonts-noto \
+        ibus \
         xrdp \
         xorg \
         xorgxrdp \

@@ -15,6 +15,7 @@ RUN DEBIAN_FRONTEND=noninteractive \
         htop \
         mate-desktop-environment \
         fonts-noto \
+        ibus \
         xrdp \
         xorg \
         xorgxrdp \
